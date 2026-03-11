@@ -113,12 +113,12 @@ const Index = () => {
         {/* Решение */}
         <Section className="mb-10">
           <SectionTitle>Предлагаемое решение</SectionTitle>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">Создать систему, которая:</p>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4">Создать AI-систему управления данными, которая:</p>
           <motion.ul className="space-y-2" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {[
-              "Автоматически получает данные из системы ресторана через API",
-              "Обрабатывает показатели продаж и активности",
-              "Формирует краткий текстовый отчёт с основными выводами",
+              "Автоматически собирает и агрегирует показатели всех ресторанов через API",
+              "Обрабатывает показатели продаж, среднего чека и активности ресторанов",
+              "Формирует компактный и понятный отчёт с основными выводами",
             ].map((item, i) => (
               <motion.li key={i} variants={fade} className="flex items-start gap-3 text-sm text-muted-foreground">
                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground shrink-0" />
