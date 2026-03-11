@@ -176,7 +176,7 @@ const Index = () => {
                 <p>Лучший филиал: <span className="font-semibold">Центр</span></p>
                 <p className="text-muted-foreground">Топ: Филадельфия ролл, Том Ям, Унаги сеты</p>
               </div>
-              <p className="text-xs text-muted-foreground mt-3">Время анализа: &lt;1 минута</p>
+              
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
