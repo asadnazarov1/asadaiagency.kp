@@ -83,7 +83,7 @@ const Index = () => {
           <h1 className="text-3xl font-semibold tracking-tight text-foreground leading-tight mb-4">
             AI-система анализа ресторанных данных
             <br />
-            <span className="text-muted-foreground">для сети Yapona Mama</span>
+            <span className="text-muted-foreground">для сети Yapona Mama 🍣🌸</span>
           </h1>
           <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
             Автоматический анализ данных из системы управления рестораном с формированием кратких управленческих выводов.
