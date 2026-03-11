@@ -215,8 +215,9 @@ const Index = () => {
               <p className="text-sm text-muted-foreground mb-1">Срок разработки: 2–3 недели</p>
             </div>
             <div className="text-right">
-              <div className="text-4xl font-semibold tracking-tight text-foreground">$2,000</div>
+              <div className="text-4xl font-semibold tracking-tight text-foreground">$1,500</div>
               <p className="text-xs text-muted-foreground mt-1">USD, фиксированная стоимость</p>
+              <p className="text-xs text-muted-foreground mt-1">50% предоплата, остальное после выполнения</p>
             </div>
           </div>
 
