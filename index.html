@@ -1,20 +1,27 @@
-<!-- Основные метатеги для заголовка и описания -->
-<title>Asad AI Agency — Анализ ресторанных данных</title>
-<meta name="description" content="AI-система автоматического анализа продаж, среднего чека и популярных блюд для сети ресторанов. Экономия времени руководства.">
-
-<!-- Open Graph / Telegram / WhatsApp / VK и т.д. -->
-<meta property="og:title" content="Asad AI Agency" />
-<meta property="og:description" content="Автоматический анализ данных ресторанов Yapona Mama: выручка, средний чек, топ-блюда, отчёты за день/неделю." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://asadnazarov1.github.io/asadaiagency.kp/" />
-
-<!-- Картинка — ключ к компактному превью -->
-<meta property="og:image" content="https://asadnazarov1.github.io/asadaiagency.kp/og-image.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-
-<!-- Twitter (Telegram часто смотрит и на эти теги) -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Asad AI Agency" />
-<meta name="twitter:description" content="AI-система для анализа ресторанных данных и быстрых отчётов." />
-<meta name="twitter:image" content="https://asadnazarov1.github.io/asadaiagency.kp/og-image.jpg" />
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Index from "./pages/Index.tsx";
+import NotFound from "./pages/NotFound.tsx";
+ 
+const queryClient = new QueryClient();
+ 
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+ 
+export default App;
