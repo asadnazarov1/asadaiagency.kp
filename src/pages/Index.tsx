@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import sarguTrans from "@/assets/sargu_trans.jpg";
 import enjenLogo from "@/assets/enjen-logo-black.png";
 import nbKids from "@/assets/NB_Kids.jpg";
@@ -38,18 +39,44 @@ const results = [
   "Упрощение принятия управленческих решений",
 ];
 
+const fade = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+};
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-xl font-semibold tracking-tight text-foreground mb-4">{children}</h2>
 );
 
 const Divider = () => <div className="border-t border-border my-10" />;
 
+const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+  <motion.section
+    variants={fade}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: "-40px" }}
+    className={className}
+  >
+    {children}
+  </motion.section>
+);
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-8 py-16 print:py-8">
         {/* Header */}
-        <header className="mb-16">
+        <motion.header
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-6">
             Коммерческое предложение
           </p>
@@ -61,78 +88,125 @@ const Index = () => {
           <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
             Автоматический анализ данных из системы управления рестораном с формированием кратких управленческих выводов.
           </p>
-        </header>
+        </motion.header>
 
         <Divider />
 
         {/* Цель проекта */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <SectionTitle>Цель проекта</SectionTitle>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Разработать систему, которая автоматически анализирует данные и отчёты из системы управления рестораном и формирует краткий текстовый вывод с ключевыми показателями и изменениями. Это позволит руководству получать быстрый анализ бизнеса без необходимости тратить время на ручное изучение отчётов.
           </p>
-        </section>
+        </Section>
 
         {/* Проблема */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <SectionTitle>Проблема</SectionTitle>
           <p className="text-sm text-muted-foreground leading-relaxed">
             В текущей системе анализ данных занимает значительное время, так как отчёты содержат много текста и цифр. Руководству приходится тратить около часа на получение ключевых выводов.
           </p>
-        </section>
+        </Section>
 
         {/* Решение */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <SectionTitle>Предлагаемое решение</SectionTitle>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">Создать систему, которая:</p>
-          <ul className="space-y-2">
+          <motion.ul className="space-y-2" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {[
               "Автоматически получает данные из системы ресторана через API",
               "Обрабатывает показатели продаж и активности",
               "Формирует краткий текстовый отчёт с основными выводами",
             ].map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+              <motion.li key={i} variants={fade} className="flex items-start gap-3 text-sm text-muted-foreground">
                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-foreground shrink-0" />
                 {item}
-              </li>
+              </motion.li>
             ))}
-          </ul>
-        </section>
+          </motion.ul>
+        </Section>
 
         <Divider />
 
         {/* Результат */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <SectionTitle>Результат внедрения</SectionTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {results.map((r, i) => (
-              <div key={i} className="rounded-2xl bg-secondary p-5">
+              <motion.div key={i} variants={fade} className="rounded-2xl bg-secondary p-5">
                 <div className="text-2xl font-semibold text-foreground mb-2">0{i + 1}</div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{r}</p>
-              </div>
+              </motion.div>
             ))}
+          </motion.div>
+        </Section>
+
+        <Divider />
+
+        {/* Пример работы AI */}
+        <Section className="mb-10">
+          <SectionTitle>Пример работы AI-системы</SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Запрос */}
+            <div className="rounded-2xl bg-secondary p-5">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Запрос</p>
+              <div className="space-y-1.5 text-sm text-foreground">
+                <p>Дата: 10 марта 2026</p>
+                <p>Рестораны: все филиалы</p>
+                <p>Данные: продажи, средний чек, заказы, популярные блюда</p>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3">Задача: краткий отчёт для CEO</p>
+            </div>
+
+            {/* Ответ */}
+            <div className="rounded-2xl bg-secondary p-5">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-3">Ответ AI</p>
+              <div className="space-y-1.5 text-sm text-foreground">
+                <p>Выручка: <span className="font-semibold">12,430 USD</span></p>
+                <p>Средний чек: <span className="font-semibold">560 USD</span></p>
+                <p>Заказов: <span className="font-semibold">1 420</span></p>
+                <p>Лучший филиал: <span className="font-semibold">Центр</span></p>
+                <p className="text-muted-foreground">Топ: Филадельфия ролл, Том Ям, Унаги сеты</p>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3">Время анализа: &lt;1 минута</p>
+            </div>
           </div>
-        </section>
+          <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
+            AI автоматически собирает данные и формирует краткий управленческий отчёт, экономя время CEO.
+          </p>
+        </Section>
 
         <Divider />
 
         {/* Этапы */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <SectionTitle>Этапы реализации</SectionTitle>
-          <div className="space-y-3">
+          <motion.div
+            className="space-y-3"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {steps.map((step, i) => (
-              <div key={i} className="flex items-center gap-4">
+              <motion.div key={i} variants={fade} className="flex items-center gap-4">
                 <span className="text-xs font-medium text-muted-foreground w-6 shrink-0">{i + 1}.</span>
                 <span className="text-sm text-foreground">{step}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </Section>
 
         <Divider />
 
         {/* Стоимость */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
             <div className="flex-1">
               <SectionTitle>Стоимость проекта</SectionTitle>
@@ -170,40 +244,48 @@ const Index = () => {
               </ul>
             </div>
           </div>
-        </section>
+        </Section>
 
         <Divider />
 
         {/* Клиенты */}
-        <section className="mb-10">
+        <Section className="mb-10">
           <SectionTitle>Наши клиенты</SectionTitle>
-          <div className="grid grid-cols-4 sm:grid-cols-7 gap-4 items-center justify-items-center">
+          <motion.div
+            className="grid grid-cols-4 sm:grid-cols-7 gap-4 items-start justify-items-center"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {clients.map((client) => (
-              <div
-                key={client.name}
-                className="w-16 h-16 rounded-2xl bg-secondary overflow-hidden flex items-center justify-center p-2"
-                title={client.name}
-              >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <motion.div key={client.name} variants={fade} className="flex flex-col items-center gap-2">
+                <div
+                  className="w-16 h-16 rounded-2xl bg-secondary overflow-hidden flex items-center justify-center p-2"
+                  title={client.name}
+                >
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-[10px] text-muted-foreground text-center leading-tight">{client.name}</span>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </Section>
 
         <Divider />
 
         {/* Резюме */}
-        <section className="mb-16">
+        <Section className="mb-16">
           <div className="rounded-2xl bg-secondary p-8">
             <p className="text-sm text-foreground leading-relaxed text-center">
               AI-система позволит сети <span className="font-semibold">Yapona Mama</span> получать краткие управленческие выводы автоматически, экономя время и облегчая принятие решений.
             </p>
           </div>
-        </section>
+        </Section>
 
         {/* Footer */}
         <footer className="text-center">
