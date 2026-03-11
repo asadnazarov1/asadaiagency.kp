@@ -72,7 +72,7 @@ const Index = () => {
       <div className="max-w-3xl mx-auto px-8 py-16 print:py-8">
         {/* Header */}
         <motion.header
-          className="mb-16 rounded-3xl bg-gradient-to-br from-rose-50 via-orange-50 to-pink-50 p-10 -mx-2"
+          className="mb-16 rounded-3xl bg-gradient-to-br from-proposal-hero-from via-proposal-hero-via to-proposal-hero-to p-10 -mx-2"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
