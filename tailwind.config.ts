@@ -57,6 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        proposal: {
+          "hero-from": "hsl(var(--proposal-hero-from))",
+          "hero-via": "hsl(var(--proposal-hero-via))",
+          "hero-to": "hsl(var(--proposal-hero-to))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
